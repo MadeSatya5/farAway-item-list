@@ -21,6 +21,14 @@ function App() {
       )
     );
   }
+  function handleClear() {
+    if (items.length < 1) return;
+
+    const confirmed = window.confirm(
+      "Are you sure you want to delete all items?"
+    );
+    if (confirmed) setItems([]);
+  }
 
   return (
     <>
@@ -31,8 +39,9 @@ function App() {
           items={items}
           onDeleteItems={handleDeleteItems}
           onCheckItems={handleCheckItems}
+          onClearList={handleClear}
         />
-        <Stats items={items}/>
+        <Stats items={items} />
       </div>
     </>
   );

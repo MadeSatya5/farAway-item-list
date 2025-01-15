@@ -1,9 +1,9 @@
 import { useState } from "react";
 import Item from "./Item";
 
-export default function PackingList({ items, onDeleteItems, onCheckItems }) {
+export default function PackingList({ items, onDeleteItems, onCheckItems, onClearList }) {
   const [sortBy, setSortBy] = useState("input");
-
+  
   let sortedItems;
 
   if (sortBy === "input") sortedItems = items;
@@ -18,6 +18,9 @@ export default function PackingList({ items, onDeleteItems, onCheckItems }) {
       (a, b) => Number(a.packed) - Number(b.packed)
     );
   }
+
+  
+
   return (
     <>
       <div className="list">
@@ -38,6 +41,8 @@ export default function PackingList({ items, onDeleteItems, onCheckItems }) {
             <option value="description">Sort by description</option>
             <option value="packed">Sort by packed status</option>
           </select>
+
+          <button onClick={onClearList}>Clear list</button>
         </div>
       </div>
     </>
